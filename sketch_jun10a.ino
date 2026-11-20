@@ -1,48 +1,59 @@
-// Definición de pines
-const int pinSensorMQ3 = A0;  // Pin analógico conectado al sensor MQ-3
-const int pinBuzzer = 7;      // Pin digital para la alerta sonora
-const int pinLedRojo = 6;     // Pin digital para el LED de alerta
-const int pinLedVerde = 5;    // Pin digital para el indicador seguro
 
-// Umbral de disparo (puedes ajustarlo según tus pruebas y calibración)
-const int umbralAlerta = 400; 
+// Definición de pines
+const int pinSensorMQ3 = A0;
+const int pinBuzzer = 7;
+const int pinLedRojo = 6;
+const int pinLedVerde = 5;
+
+// Umbral de alerta
+const int umbralAlerta = 400;
 
 void setup() {
-  // Inicializar comunicación serial para monitoreo en la PC
+  // Inicializar comunicación serial
   Serial.begin(9600);
-  
-  // Configurar pines de salida
+
+  // Configurar pines
   pinMode(pinBuzzer, OUTPUT);
   pinMode(pinLedRojo, OUTPUT);
   pinMode(pinLedVerde, OUTPUT);
-  
-  // Mensaje inicial de calentamiento del sensor
-  Serial.println("Calentando sensor MQ-3... Por favor espere.");
-  delay(2000); // El MQ-3 requiere unos minutos para una lectura óptima, pero 2s bastan para pruebas rápidas
+
+  // NUEVA FUNCIONALIDAD: Mensaje de bienvenida
+  Serial.println("============================");
+  Serial.println("     BIENVENIDO A ALCOSAFE");
+  Serial.println("   Sistema de Alcoholimetro");
+  Serial.println("============================");
+
+  // Calentamiento inicial
+  Serial.println("Calentando sensor MQ-3...");
+  delay(2000);
+
+  // NUEVA FUNCIONALIDAD: Aviso de inicio
+  Serial.println("AlcoSafe listo para iniciar las mediciones.");
+  Serial.println("----------------------------");
 }
 
 void loop() {
-  // Leer el valor analógico del sensor (0 a 1023)
+  // Leer sensor
   int valorSensor = analogRead(pinSensorMQ3);
-  
-  // Mostrar lectura en el monitor serial
+
+  // Mostrar lectura
   Serial.print("Lectura de alcohol (ADC): ");
   Serial.println(valorSensor);
-  
-  // Evaluar si supera el umbral de seguridad
+
+  // Evaluar el umbral
   if (valorSensor > umbralAlerta) {
-    // Alerta activada
     digitalWrite(pinLedRojo, HIGH);
     digitalWrite(pinLedVerde, LOW);
-    digitalWrite(pinBuzzer, HIGH); // Suena el buzzer
-    Serial.println("¡ALERTA! Nivel de alcohol alto detectado.");
+    digitalWrite(pinBuzzer, HIGH);
+
+    Serial.println("ALERTA: Nivel de alcohol alto detectado.");
   } else {
-    // Estado normal / seguro
     digitalWrite(pinLedRojo, LOW);
     digitalWrite(pinLedVerde, HIGH);
-    digitalWrite(pinBuzzer, LOW);  // Apagado
+    digitalWrite(pinBuzzer, LOW);
+
     Serial.println("Estado seguro.");
   }
-  
-  delay(1000); // Pausa de un segundo entre lecturas
+
+  delay(1000);
 }

@@ -1,0 +1,67 @@
+body.fondo-pantalla {
+    background-color: #e9eef5;
+    font-family: Arial, sans-serif;
+}
+
+.contenedor-registro {
+    background-color: #ffffff;
+    max-width: 480px;
+}
+
+.cuerpo-formulario {
+    background-color: #ffffff;
+}
+
+.encabezado-registro {
+    background-color: #0c1b33;
+    color: #ffffff;
+}
+
+.titulo {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.subtitulo {
+    color: #a0aabf;
+}
+
+.icono-usuario {
+    font-size: 2.2rem;
+}
+
+.entrada-texto {
+    background-color: #f4f6f9 !important;
+    border: 1px solid #ced4da !important;
+    color: #333;
+}
+
+.entrada-texto:focus {
+    background-color: #ffffff !important;
+    border-color: #1a56db !important;
+    box-shadow: 0 0 0 0.25rem rgba(26, 86, 219, 0.2) !important;
+}
+
+.botones .btn-crear {
+    background-color: #1a56db;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+}
+
+.botones .btn-crear:hover {
+    background-color: #1240a6;
+    color: white;
+}
+
+.botones .btn-volver {
+    background-color: #6c757d;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+}
+
+.botones .btn-volver:hover {
+    background-color: #5a6268;
+    color: white;
+}
